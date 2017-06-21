@@ -170,22 +170,39 @@ public class Hand extends TreeSet<Card> implements IHand {
 	@Override
 	public boolean isPair() {
 
-		int counter = 0;
-
-		for (int i = 2; i < 15; i++){
+		for (int i = 2; i < 15; i++) {
 			if (this.group().get(i).size() == 2) {
-				counter = 2;
+				return true;
 			}
 		}
-
-		if (counter == 2)
-			return true;
 
 		return false;
 	}
 
 	@Override
 	public boolean isDoublePair() {
+
+		int counter1 = 0;
+		int counter2 = 0;
+
+		for (int i = 2; i < 15; i++) {
+
+			if (this.group().get(i).size() == 2) {
+				if (counter1 == 0 && counter2 == 0) {
+					counter1 = 1;
+				} else if (counter1 != 0 && counter2 == 0) {
+					counter2 = 1;
+				} else {
+					return false;
+				}
+			}
+
+		}
+
+		if (counter1 + counter2 == 2) {
+			return true;
+		}
+
 		return false;
 	}
 
@@ -239,6 +256,18 @@ public class Hand extends TreeSet<Card> implements IHand {
 			handValue.setSingleCards(this.singleCards); // or
 														// this.getsingleCards()
 			return handValue;
+		}
+
+		if (this.isPair() && !this.isDoublePair()) {
+			handValue.setClassifier(HandClassifier.PAIR);
+			handValue.setLevelValue(this.levelValue);
+			handValue.setSingleCards(this.singleCards);
+		}
+
+		if (this.isDoublePair()) {
+			handValue.setClassifier(HandClassifier.TWO_PAIR);
+			handValue.setLevelValue(this.levelValue);
+			handValue.setSingleCards(this.singleCards);
 		}
 
 		// For the flush, all singleCards are needed
