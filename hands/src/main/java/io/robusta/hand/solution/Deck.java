@@ -2,44 +2,52 @@ package io.robusta.hand.solution;
 
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.Random;
 import java.util.TreeSet;
 
 import io.robusta.hand.Card;
-import io.robusta.hand.CardColor;
 import io.robusta.hand.interfaces.IDeck;
 
-public class Deck extends LinkedList<Card> implements IDeck{
+public class Deck extends LinkedList<Card> implements IDeck {
 
-	
 	private static final long serialVersionUID = -4686285366508321800L;
-	
+
 	public Deck() {
 
 	}
-	
+
 	@Override
 	public Card pick() {
+
 		// shuffle;
+		Collections.shuffle(this);
+
 		// remove card from deck and returns it
-		return null;
+		Card pickedCard = this.remove();
+		return pickedCard;
 	}
-
-
-	
 
 	@Override
 	public TreeSet<Card> pick(int number) {
 		// reuse pick()
-		return null;
+
+		TreeSet<Card> pickedCards = new TreeSet<>();
+		Card newlyPickedCard;
+
+		for (int i = 0; i < number; i++) {
+			newlyPickedCard = this.pick();
+			pickedCards.add(newlyPickedCard);
+		}
+
+		return pickedCards;
 	}
 
 	@Override
 	public Hand giveHand() {
 		// A hand is a **5** card TreeSet
-		return null;
+
+		TreeSet<Card> pickedCards = this.pick(5);
+		Hand hand = new Hand(pickedCards);
+		return hand;
 	}
-	
-	
-	
+
 }

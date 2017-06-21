@@ -85,6 +85,9 @@ public class IHandTest extends PokerTest {
 		
 		hand = newHand("Tc Jc As Qs Kh");
 		assertTrue(hand.toString(), hand.isStraight());
+		
+		hand = newHand("4c 6c 2s 3s Ah");
+		assertFalse(hand.toString(), hand.isStraight());
 	}
 
 	@Test
