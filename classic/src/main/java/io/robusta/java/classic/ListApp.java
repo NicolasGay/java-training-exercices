@@ -8,35 +8,56 @@ import java.util.List;
  */
 public class ListApp {
 
-    List<Integer> buildList(int a, int b, int c){
-        return null;
-    }
+	List<Integer> buildList(int a, int b, int c) {
 
+		List<Integer> result = new ArrayList<Integer>();
 
-    ArrayList<Integer> buildList(int... numbers){
-        return null;
-    }
+		result.add(a);
+		result.add(b);
+		result.add(c);
 
+		return result;
+	}
 
-    boolean equality(List<Integer> list1, List<Integer> list2){
+	ArrayList<Integer> buildList(int... numbers) {
 
-        return false;
-    }
+		ArrayList<Integer> result = new ArrayList<Integer>();
 
-    String asString (List<Integer> numbers){
-        return null;
-    }
+		for (int i = 0; i < numbers.length; i++) {
+			result.add(numbers[i]);
+		}
 
+		return result;
+	}
 
-    int first(List<Integer> ints){
-        return 0;
-    }
+	boolean equality(List<Integer> list1, List<Integer> list2) {
 
-    int last(List<Integer> ints){
-        return 0;
-    }
+		if (list1.equals(list2)) {
+			return true;
+		}
 
-    int medium(List<Integer> ints){
-        return 0;
-    }
+		return false;
+	}
+
+	String asString(List<Integer> numbers) {
+		return null;
+	}
+
+	int first(List<Integer> ints) {
+		return ints.get(0);
+	}
+
+	int last(List<Integer> ints) {
+		return ints.get(ints.size() - 1);
+	}
+
+	int medium(List<Integer> ints) {
+
+		if (ints.size() % 2 == 0) {
+			return ints.get(ints.size() / 2);
+		} else {
+			return ints.get((ints.size() / 2)+0.5);
+		}
+
+	}
 }

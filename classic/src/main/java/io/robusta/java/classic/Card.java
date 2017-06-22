@@ -12,7 +12,8 @@ public class Card {
         this.color = color;
     }
 
-    @Override
+
+	@Override
     public int hashCode() {
         return this.value + this.color;
     }

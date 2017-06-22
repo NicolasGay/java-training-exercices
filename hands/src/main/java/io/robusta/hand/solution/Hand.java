@@ -173,6 +173,8 @@ public class Hand extends TreeSet<Card> implements IHand {
 		for (int i = 2; i < 15; i++) {
 			if (this.group().get(i).size() == 2) {
 				return true;
+			}else{
+				return false;
 			}
 		}
 
@@ -269,6 +271,13 @@ public class Hand extends TreeSet<Card> implements IHand {
 			handValue.setLevelValue(this.levelValue);
 			handValue.setSingleCards(this.singleCards);
 		}
+		
+		if (this.isStraightFlush()) {
+			handValue.setClassifier(HandClassifier.STRAIGHT_FLUSH);
+			handValue.setLevelValue(this.levelValue);
+			handValue.setSingleCards(this.singleCards);
+		}
+		
 
 		// For the flush, all singleCards are needed
 
